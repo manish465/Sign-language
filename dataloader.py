@@ -8,8 +8,8 @@ def get_dataloaders(data_dir, batch_size = 64):
         transforms.Normalize([0.5] * 3, [0.5] * 3)
     ])
 
-    train_data = datasets.ImageFolder(root="data/train", transform=transform)
-    test_data = datasets.ImageFolder(root="data/test", transform=transform)
+    train_data = datasets.ImageFolder(root=f"{data_dir}/train", transform=transform)
+    test_data = datasets.ImageFolder(root=f"{data_dir}/test", transform=transform)
 
     train_loader = DataLoader(train_data, batch_size=batch_size, shuffle=True)
     test_loader = DataLoader(test_data, batch_size=batch_size, shuffle=False)
