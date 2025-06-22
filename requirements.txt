@@ -3,3 +3,7 @@ torchvision
 opencv-python
 matplotlib
 numpy
+PIL
+cv2
+pathlib
+shutil
