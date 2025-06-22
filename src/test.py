@@ -4,17 +4,17 @@ import torch
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 model = SignLanguageCNN()
-model.load_state_dict(torch.load("../models/model_epoch_10.pth"))
+model.load_state_dict(torch.load("models/model_epoch_10.pth"))
 model.to(device)
 model.eval()
 
-_, test_loader, classes = get_dataloaders("../data")
+_, test_loader, classes = get_dataloaders("data")
 
 correct = 0
 total = 0
 
 with torch.no_grad():
-  for images, labels in test_loader:
+  for batch_idx, (images, labels, paths) in enumerate(test_loader):
     images, labels = images.to(device), labels.to(device)
     outputs = model.forward(images)
     _, predicted = torch.max(outputs.data, 1)
